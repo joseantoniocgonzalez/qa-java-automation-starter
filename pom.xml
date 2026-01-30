@@ -29,6 +29,22 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- JUnit Platform Suite (for  runner) -->
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite</artifactId>
+      <version>1.10.3</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- JUnit Platform Suite (for  runner) -->
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-suite</artifactId>
+      <version>1.10.3</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- Selenium -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
