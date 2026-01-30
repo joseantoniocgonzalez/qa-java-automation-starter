@@ -1,0 +1,27 @@
+# ---- Java / Maven ----
+target/
+*.class
+*.log
+
+# ---- IDEs ----
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
+
+# ---- OS ----
+.DS_Store
+Thumbs.db
+
+# ---- Reports (generated output) ----
+reports/**
+!reports/.gitkeep
+!reports/**/.gitkeep
+
+# ---- Cucumber / Selenium artifacts (generated) ----
+screenshots/
+html-source/
