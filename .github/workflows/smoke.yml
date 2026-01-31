@@ -36,6 +36,8 @@ jobs:
           set -euo pipefail
           mkdir -p reports/newman reports/junit reports/cucumber screenshots html-source
           if ! newman run src/test/resources/postman/collection.json \
+            --folder "Smoke - GET /posts/1" \
+            --folder "Smoke - GET /users" \
               -e src/test/resources/postman/environment.json \
               -r junit,htmlextra \
               --reporter-junit-export reports/junit/newman-smoke.xml \
