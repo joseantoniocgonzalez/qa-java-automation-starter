@@ -31,21 +31,20 @@ jobs:
       - name: Install Newman
         run: npm install -g newman newman-reporter-htmlextra
 
-      - name: Run Newman smoke (API) - debug
+      - name: Run Newman smoke (API)
         run: |
-          set -euxo pipefail
-          node -v
-          npm -v
-          which newman
-          newman --version
-          ls -la src/test/resources/postman
+          set -euo pipefail
           mkdir -p reports/newman reports/junit reports/cucumber screenshots html-source
-          newman run src/test/resources/postman/collection.json \
-            -e src/test/resources/postman/environment.json \
-            -r junit,htmlextra \
-            --reporter-junit-export reports/junit/newman-smoke.xml \
-            --reporter-htmlextra-export reports/newman/newman-smoke.html \
-            --verbose
+          if ! newman run src/test/resources/postman/collection.json \
+              -e src/test/resources/postman/environment.json \
+              -r junit,htmlextra \
+              --reporter-junit-export reports/junit/newman-smoke.xml \
+              --reporter-htmlextra-export reports/newman/newman-smoke.html ; then
+            echo "===== NEWMAN FAILED: printing JUnit report ====="
+            ls -la reports/junit || true
+            sed -n '1,200p' reports/junit/newman-smoke.xml || true
+            exit 1
+          fi
 
       - name: Upload artifacts (reports + evidence)
         if: always()
