@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Newman smoke (API)
         run: |
-          mkdir -p reports/newman reports/junit
+          mkdir -p reports/newman reports/junit reports/cucumber screenshots html-source
           newman run src/test/resources/postman/collection.json \
             -e src/test/resources/postman/environment.json \
             -r junit,htmlextra \
@@ -45,6 +45,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: smoke-artifacts
+          if-no-files-found: ignore
           path: |
             reports/**
             screenshots/**
