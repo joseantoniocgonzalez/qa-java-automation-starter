@@ -36,6 +36,20 @@
               "  pm.expect(json).to.have.property('id', 1);",
               "  pm.expect(json).to.have.property('title');",
               "  pm.expect(json).to.have.property('body');",
+              "});",
+              "",
+              "pm.test('Matches JSON Schema (post)', function () {",
+              "  const schema = {",
+              "    type: 'object',",
+              "    required: ['userId', 'id', 'title', 'body'],",
+              "    properties: {",
+              "      userId: { type: 'number' },",
+              "      id: { type: 'number' },",
+              "      title: { type: 'string' },",
+              "      body: { type: 'string' }",
+              "    }",
+              "  };",
+              "  pm.response.to.have.jsonSchema(schema);",
               "});"
             ]
           }
@@ -73,6 +87,37 @@
               "  const json = pm.response.json();",
               "  pm.expect(json[0]).to.have.property('id');",
               "  pm.expect(json[0]).to.have.property('email');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Data-driven - GET /posts/{{postId}}",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/posts/{{postId}}",
+          "host": ["{{baseUrl}}"],
+          "path": ["posts", "{{postId}}"]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status code is 200', function () {",
+              "  pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test('Returned post id matches postId from data', function () {",
+              "  const json = pm.response.json();",
+              "  const expected = Number(pm.iterationData.get('postId'));",
+              "  pm.expect(json).to.have.property('id', expected);",
               "});"
             ]
           }
