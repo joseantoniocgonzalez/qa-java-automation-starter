@@ -17,7 +17,7 @@
     <webdrivermanager.version>5.9.2</webdrivermanager.version>
     <cucumber.version>7.34.2</cucumber.version>
     <spotless.version>2.43.0</spotless.version>
-    <surefire.version>3.5.0</surefire.version>
+    <surefire.version>3.5.4</surefire.version>
   </properties>
 
   <dependencies>
