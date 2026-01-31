@@ -39,6 +39,7 @@ jobs:
             --folder "Smoke - GET /posts/1" \
             --folder "Smoke - GET /users" \
               -e src/test/resources/postman/environment.json \
+            -d src/test/resources/postman/posts.csv \
               -r junit,htmlextra \
               --reporter-junit-export reports/junit/newman-smoke.xml \
               --reporter-htmlextra-export reports/newman/newman-smoke.html ; then
